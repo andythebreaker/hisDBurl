@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hisDBurl VSTO Excel Add-in</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <style>
+        .flowchart {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .flowchart img {
+            width: 25vw; /* adjust size as needed */
+            height: auto;
+        }
+        .arrow {
+            margin: 0 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body><div class="flowchart">
+            <img src="1.png" alt="Step 1">
+            <span class="arrow">→</span>
+            <img src="2.png" alt="Step 2">
+            <span class="arrow">→</span>
+            <img src="3.png" alt="Step 3">
+        </div>
+    <div class="ui container">
+        <h1 class="ui header">hisDBurl VSTO Excel Add-in</h1>
+        
+        <p>目的: 可以把 "從台灣歷史資料庫 (國史館、議會)" 下載的 CSV 加上 URL (to the image resource)</p>
+
+        <h2 class="ui dividing header">How to Install:</h2>
+        <ol class="ui list">
+            <li>Download (from GitHub release)</li>
+            <li>Unzip</li>
+            <li>Double click <code>publicCert.cer</code>，一路無腦確認，選擇安裝到受信任的根憑證 (不要選自動)</li>
+            <li>Run <code>setup.exe</code></li>
+        </ol>
+
+        <h2 class="ui dividing header">Usage:</h2>
+        <ol class="ui list">
+            <li>Open CSV file (建議不要雙擊 CSV，會造成文件編號起始的 0s 在 Excel 中消失 (成為數字) 建議用開啟舊檔 (select all columns type as text))</li>
+            <li>去到增益集的工具列</li>
+            <li>依據資料庫名稱按下 <code>gen url</code></li>
+            <li>去 "庶務" 按下 <code>gen img</code> (如果資料量很大，要等網路跑)</li>
+        </ol>
+
+        <h2 class="ui dividing header">解釋:</h2>
+        <p><code>gen img</code> 會生成 image URL to the document (image) but due to some DB need login (or due to data void reason), the 3rd step in usage provides a link W/O login</p>
+
+        <h2 class="ui dividing header">Demo Video:</h2>
+        <p><a href="_">Watch the demo video here</a></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</body>
+</html>
