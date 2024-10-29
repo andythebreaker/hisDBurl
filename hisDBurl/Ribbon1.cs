@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
+using System.Security.Policy;
 
 namespace hisDBurl
 {
@@ -182,7 +183,9 @@ namespace hisDBurl
                         if (resJson != null)
                         {
                             Microsoft.Office.Interop.Excel.Range rightCell = worksheet.Cells[row, col + 1] as Microsoft.Office.Interop.Excel.Range;
-                            rightCell.Value2 = ProcessJsonObject(resJson, cellText);//resJson.ToString();
+                            //rightCell.Value2 = ProcessJsonObject(resJson, cellText);//resJson.ToString();
+                            var the_url = ProcessJsonObject(resJson, cellText);
+                            worksheet.Hyperlinks.Add(rightCell, the_url, Type.Missing, "Click to view archive", the_url);
                         }
                     }
                 }

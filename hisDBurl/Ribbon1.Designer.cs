@@ -37,13 +37,13 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.logi = this.Factory.CreateRibbonGroup();
             this.setAllText = this.Factory.CreateRibbonButton();
+            this.httpsGetPost = this.Factory.CreateRibbonButton();
             this.ahcmsG = this.Factory.CreateRibbonGroup();
             this.ahcmsGenUrl = this.Factory.CreateRibbonButton();
             this.ndapG = this.Factory.CreateRibbonGroup();
             this.ndapGenUrl = this.Factory.CreateRibbonButton();
             this.ahtwhG = this.Factory.CreateRibbonGroup();
             this.ahtwhGenUrl = this.Factory.CreateRibbonButton();
-            this.httpsGetPost = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.logi.SuspendLayout();
             this.ahcmsG.SuspendLayout();
@@ -73,6 +73,12 @@
             this.setAllText.Label = "文字化";
             this.setAllText.Name = "setAllText";
             this.setAllText.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.setAllText_Click);
+            // 
+            // httpsGetPost
+            // 
+            this.httpsGetPost.Label = "取得影像連結";
+            this.httpsGetPost.Name = "httpsGetPost";
+            this.httpsGetPost.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // ahcmsG
             // 
@@ -109,12 +115,6 @@
             this.ahtwhGenUrl.Label = "加超連結";
             this.ahtwhGenUrl.Name = "ahtwhGenUrl";
             this.ahtwhGenUrl.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ahtwhGenUrl_Click);
-            // 
-            // httpsGetPost
-            // 
-            this.httpsGetPost.Label = "取得影像連結";
-            this.httpsGetPost.Name = "httpsGetPost";
-            this.httpsGetPost.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // hisDBurlGUI
             // 
