@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 using System.Security.Policy;
+using System.IO;
 
 namespace hisDBurl
 {
@@ -36,7 +37,8 @@ namespace hisDBurl
             }
         }
 
-        private void addUrl(Int16 colNum, string qry1, string qry2, string url1, string url2) {
+        private void addUrl(Int16 colNum, string qry1, string qry2, string url1, string url2)
+        {
             // Get the active worksheet
             Worksheet worksheet = Globals.ThisAddIn.Application.ActiveSheet as Worksheet;
 
@@ -60,12 +62,12 @@ namespace hisDBurl
                     string encodedQuery = Convert.ToBase64String(
                         System.Text.Encoding.UTF8.GetBytes(
                             //$"{{\"query\":[{{\"field\":\"in_store_no\",\"value\":\"{secondColText}\"}}]}}"
-                            qry1 + secondColText+ qry2
+                            qry1 + secondColText + qry2
                         )
                     );
 
                     // Create the URL with the encoded query
-                    string url = url1+ encodedQuery+ url2;//$"https://ahonline.drnh.gov.tw/index.php?act=Archive/search/{encodedQuery}%3D%3D";
+                    string url = url1 + encodedQuery + url2;//$"https://ahonline.drnh.gov.tw/index.php?act=Archive/search/{encodedQuery}%3D%3D";
 
                     // Find the last used column in this row and set the URL in the next column
                     //int lastColumn = worksheet.Cells[row, worksheet.Columns.Count].End(XlDirection.xlToLeft).Column;
@@ -194,32 +196,64 @@ namespace hisDBurl
 
 
 
-private string ProcessJsonObject(JObject obj,string url)
-    {
-        if ((int)obj["action"] == 0)
+        private string ProcessJsonObject(JObject obj, string url)
         {
-            return obj["info"].ToString();
+            if ((int)obj["action"] == 0)
+            {
+                return obj["info"].ToString();
+            }
+            else if ((int)obj["action"] == 1)
+            {
+                var uri = new Uri(url);
+                string domain = uri.Host;
+                string display = obj["data"]["display"].ToString();
+                string resource = obj["data"]["resouse"].ToString();
+                return $"https://{domain}/index.php?act=Display/{display}/{resource}";
+            }
+            else
+            {
+                throw new ArgumentException("Invalid action type");
+            }
         }
-        else if ((int)obj["action"] == 1)
-        {
-            var uri = new Uri(url);
-            string domain = uri.Host;
-            string display = obj["data"]["display"].ToString();
-            string resource = obj["data"]["resouse"].ToString();
-            return $"https://{domain}/index.php?act=Display/{display}/{resource}";
-        }
-        else
-        {
-            throw new ArgumentException("Invalid action type");
-        }
-    }
 
 
-    private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void button1_Click(object sender, RibbonControlEventArgs e)
         {
             var excelApp = Globals.ThisAddIn.Application;
             var worksheet = excelApp.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
             _ = ProcessSheet(worksheet);
+        }
+
+        private void hoDownload_Click(object sender, RibbonControlEventArgs e)
+        {
+           // FileDownloader fileDownloader = new FileDownloader(hoacc.Text,hopsw.Text,hosa);
+            //_ = fileDownloader.DownloadFileFromAPIAsync();
+            if (String.IsNullOrEmpty(hoacc.Text) || String.IsNullOrEmpty(hopsw.Text))
+            {
+                MessageBox.Show($"account password is empty", "Error");
+            }
+            else
+            {
+                 FileDownloader fileDownloader = new FileDownloader(hoacc.Text,hopsw.Text,hosa);
+                _ = fileDownloader.DownloadFileFromAPIAsync();
+            }
+        }
+
+        private void button1_Click_1(object sender, RibbonControlEventArgs e)
+        {//if (String.IsNullOrEmpty(hoacc.Text) || String.IsNullOrEmpty(hopsw.Text)) {
+         //    MessageBox.Show($"account password is empty", "Error");
+         //  }
+         //  else
+         // {
+         //   FileDownloader fileDownloader = new FileDownloader(hoacc.Text, hopsw.Text, hosa);
+         //  fileDownloader.test1();
+         //  }
+            hosa.Tag = "ok";
+        }
+
+        private void hosa_Click(object sender, RibbonControlEventArgs e)
+        {
+            MessageBox.Show((string)hosa.Tag);
         }
     }
 }

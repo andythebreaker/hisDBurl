@@ -44,11 +44,19 @@
             this.ndapGenUrl = this.Factory.CreateRibbonButton();
             this.ahtwhG = this.Factory.CreateRibbonGroup();
             this.ahtwhGenUrl = this.Factory.CreateRibbonButton();
+            this.hoacc = this.Factory.CreateRibbonEditBox();
+            this.hopsw = this.Factory.CreateRibbonEditBox();
+            this.hoDownload = this.Factory.CreateRibbonButton();
+            this.hoCookie = this.Factory.CreateRibbonEditBox();
+            this.hosa = this.Factory.CreateRibbonButton();
+            this.debugG = this.Factory.CreateRibbonGroup();
+            this.button1 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.logi.SuspendLayout();
             this.ahcmsG.SuspendLayout();
             this.ndapG.SuspendLayout();
             this.ahtwhG.SuspendLayout();
+            this.debugG.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -58,6 +66,7 @@
             this.tab1.Groups.Add(this.ahcmsG);
             this.tab1.Groups.Add(this.ndapG);
             this.tab1.Groups.Add(this.ahtwhG);
+            this.tab1.Groups.Add(this.debugG);
             this.tab1.Label = "TabAddIns";
             this.tab1.Name = "tab1";
             // 
@@ -83,6 +92,11 @@
             // ahcmsG
             // 
             this.ahcmsG.Items.Add(this.ahcmsGenUrl);
+            this.ahcmsG.Items.Add(this.hoacc);
+            this.ahcmsG.Items.Add(this.hopsw);
+            this.ahcmsG.Items.Add(this.hoDownload);
+            this.ahcmsG.Items.Add(this.hoCookie);
+            this.ahcmsG.Items.Add(this.hosa);
             this.ahcmsG.Label = "國史館檔案史料文物查詢系統";
             this.ahcmsG.Name = "ahcmsG";
             // 
@@ -116,6 +130,45 @@
             this.ahtwhGenUrl.Name = "ahtwhGenUrl";
             this.ahtwhGenUrl.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ahtwhGenUrl_Click);
             // 
+            // hoacc
+            // 
+            this.hoacc.Label = "帳號";
+            this.hoacc.Name = "hoacc";
+            // 
+            // hopsw
+            // 
+            this.hopsw.Label = "密碼";
+            this.hopsw.Name = "hopsw";
+            // 
+            // hoDownload
+            // 
+            this.hoDownload.Label = "下載";
+            this.hoDownload.Name = "hoDownload";
+            this.hoDownload.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.hoDownload_Click);
+            // 
+            // hoCookie
+            // 
+            this.hoCookie.Label = "cookie";
+            this.hoCookie.Name = "hoCookie";
+            // 
+            // hosa
+            // 
+            this.hosa.Label = "檢視登入狀態";
+            this.hosa.Name = "hosa";
+            this.hosa.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.hosa_Click);
+            // 
+            // debugG
+            // 
+            this.debugG.Items.Add(this.button1);
+            this.debugG.Label = "開發人員專用勿動";
+            this.debugG.Name = "debugG";
+            // 
+            // button1
+            // 
+            this.button1.Label = "button1";
+            this.button1.Name = "button1";
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click_1);
+            // 
             // hisDBurlGUI
             // 
             this.Name = "hisDBurlGUI";
@@ -132,6 +185,8 @@
             this.ndapG.PerformLayout();
             this.ahtwhG.ResumeLayout(false);
             this.ahtwhG.PerformLayout();
+            this.debugG.ResumeLayout(false);
+            this.debugG.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -148,6 +203,13 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton ndapGenUrl;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton ahtwhGenUrl;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton httpsGetPost;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox hoacc;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox hopsw;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton hoDownload;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox hoCookie;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton hosa;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup debugG;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
     }
 
     partial class ThisRibbonCollection
